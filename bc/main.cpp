@@ -1,0 +1,154 @@
+#include "head.cpp"
+
+
+using namespace VM;
+
+int main() {
+	uint64_t memory_size = 1024;
+	auto memory = std::malloc( memory_size );
+
+	auto bc = VM_BYTECODE();
+	bc.data = reinterpret_cast<uint8_t*>( memory );
+
+	p = bc.data + 0;
+	size = 0;
+
+
+
+	_b( OP_REG_STRING, 0x00, 0x04 ); _b( 0x54, 0x45, 0x53, 0x54 );
+	_b( OP_NAME_GET, 0x01, 0x00 );
+	_b( OP_EXT, 0x02, 0x01 );
+	_b( OP_LIB, (uint8_t)VM_LIB_IO, (uint8_t)VM_LIB_IO_DEBUG );
+	_b( 0x02 );
+	_b( OP_HALT );
+
+
+
+	// _b( OP_REG_CALLABLE, 0x00, (uint8_t)CALLABLE_FUNCTION, 0x23 );
+	// 	_b( OP_ARGS_GET, 0x00, 0x00 );
+	// 	_b( OP_ARGS_GET, 0x01, 0x01 );
+	// 	_b( OP_ARGS_GET, 0x02, 0x02 );
+	// 	_b( OP_LIB, (uint8_t)VM_LIB_MATH, (uint8_t)VM_LIB_MATH_ADD );
+	// 	_b( 0x00, 0x00, 0x01 );
+	// 	_b( OP_REG_CALLABLE, 0x03, (uint8_t)CALLABLE_SOFT_BLOCK, 0x03 );
+	// 		_b( OP_SAVE, 0x00 );
+	// 		_b( OP_RETURN );
+	// 	_b( OP_LIB, (uint8_t)VM_LIB_MATH, (uint8_t)VM_LIB_MATH_GT );
+	// 	_b( 0x04, 0x00, 0x02 );
+	// 	_b( OP_IF, 0x04, 0x03 );
+	// 	_b( OP_ARGS_SET, 0x00, 0x00 );
+	// 	_b( OP_TAIL );
+	// _b( OP_ARGS_CLEAR );
+	// _b( OP_REG_INT, 0x01 ); _b( 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 );
+	// _b( OP_ARGS_SET, 0x00, 0x01 );
+	// _b( OP_REG_INT, 0x01 ); _b( 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 );
+	// _b( OP_ARGS_SET, 0x01, 0x01 );
+	// _b( OP_REG_INT, 0x01 ); _b( 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0F );
+	// _b( OP_ARGS_SET, 0x02, 0x01 );
+	// _b( OP_CALL, 0x00 );
+	// _b( OP_LOAD, 0x01 );
+
+	// // _b( OP_NOOP );
+	// // _b( OP_REG_BYTE, 0x00 ); _b( 0x00 );
+	// // _b( OP_ARGS_SET, 0x00, 0x00 );
+	// // _b( OP_REG_BYTE, 0x01 ); _b( 0x00 );
+	// // _b( OP_ARGS_SET, 0x00, 0x01 );
+	// // _b( OP_REG_BYTE, 0x02 ); _b( 0x00 );
+	// // _b( OP_ARGS_SET, 0x00, 0x02 );
+	// // _b( OP_REG_BYTE, 0x03 ); _b( 0x00 );
+	// // _b( OP_ARGS_SET, 0x00, 0x03 );
+	// // _b( OP_REG_BYTE, 0x04 ); _b( 0x00 );
+	// // _b( OP_ARGS_SET, 0x00, 0x04 );
+	// // _b( OP_SAVE, 0x00 );
+
+	// _b( OP_HALT );
+
+
+
+	// _b( OP_REG_INT, 0x00 ); _b( 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 );
+	// _b( OP_REG_INT, 0x01 ); _b( 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 );
+	// _b( OP_REG_INT, 0x02 ); _b( 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0F );
+	// _b( OP_REG_CALLABLE, 0x03, (uint8_t)CALLABLE_HARD_BLOCK, 0x15 );
+	// 	_b( OP_LIB, (uint8_t)VM_LIB_MATH, (uint8_t)VM_LIB_MATH_ADD );
+	// 	_b( 0x00, 0x00, 0x01 );
+	// 	_b( OP_REG_CALLABLE, 0x04, (uint8_t)CALLABLE_SOFT_BLOCK, 0x01 );
+	// 		_b( OP_CONTINUE );
+	// 	_b( OP_LIB, (uint8_t)VM_LIB_MATH, (uint8_t)VM_LIB_MATH_GT );
+	// 	_b( 0x05, 0x02, 0x00 );
+	// 	_b( OP_IF, 0x05, 0x04 );
+	// 	_b( OP_BREAK );
+	// _b( OP_CALL, 0x03 );
+	// _b( OP_HALT );
+
+
+
+	// _b( OP_REG_STRING, 0x00, 0x05 ); _b( 0x47, 0x43, 0x4F, 0x52, 0x50 );
+	// _b( OP_REG_INT, 0x01 ); _b( 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 );
+	// _b( OP_NAME_SET, 0x00, 0x01 );
+	// _b( OP_REG_INT, 0x01 ); _b( 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 );
+	// _b( OP_REG_INT, 0x02 ); _b( 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03 );
+	// _b( OP_REG_CALLABLE, 0x03, (uint8_t)CALLABLE_HARD_BLOCK, 0x32 );
+	// 	_b( OP_REG_CALLABLE, 0x04, (uint8_t)CALLABLE_SOFT_BLOCK, 0x01 );
+	// 		_b( OP_CONTINUE );
+	// 	_b( OP_REG_CALLABLE, 0x05, (uint8_t)CALLABLE_SOFT_BLOCK, 0x01 );
+	// 		_b( OP_BREAK );
+	// 	_b( OP_REG_STRING, 0x06, 0x05 ); _b( 0x47, 0x43, 0x4F, 0x52, 0x50 );
+	// 	_b( OP_NAME_GET, 0x00, 0x06 );
+	// 	_b( OP_LIB, (uint8_t)VM_LIB_MATH, (uint8_t)VM_LIB_MATH_ADD );
+	// 	_b( 0x00, 0x00, 0x01 );
+	// 	_b( OP_NAME_SET, 0x06, 0x00 );
+	// 	_b( OP_LIB, (uint8_t)VM_LIB_MATH, (uint8_t)VM_LIB_MATH_GT );
+	// 	_b( 0x07, 0x02, 0x00 );
+	// 	_b( OP_REG_CALLABLE, 0x08, (uint8_t)CALLABLE_SOFT_BLOCK, 0x01 );
+	// 		_b( OP_BREAK );
+	// 	_b( OP_REG_CALLABLE, 0x09, (uint8_t)CALLABLE_SOFT_BLOCK, 0x01 );
+	// 		_b( OP_BREAK );
+	// 	_b( OP_IF_ELSE, 0x07, 0x04, 0x05 );
+	// _b( OP_CALL, 0x03 );
+	// _b( OP_HALT );
+
+
+
+	// _b( OP_REG_CALLABLE, 0x00, (uint8_t)CALLABLE_FUNCTION, 0x31 );
+	// 	_b( OP_REG_STRING, 0x00, 0x05 ); _b( 0x47, 0x43, 0x4F, 0x52, 0x50 );
+	// 	_b( OP_REG_INT, 0x01 ); _b( 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x05 );
+	// 	_b( OP_NAME_SET, 0x00, 0x01 );
+	// 	_b( OP_REG_CALLABLE, 0x00, (uint8_t)CALLABLE_FUNCTION, 0x16 );
+	// 		_b( OP_REG_STRING, 0x00, 0x05 ); _b( 0x47, 0x43, 0x4F, 0x52, 0x50 );
+	// 		_b( OP_NAME_GET, 0x00, 0x00 );
+	// 		_b( OP_ARGS_GET, 0x01, 0x00 );
+	// 		_b( OP_LIB, (uint8_t)VM_LIB_MATH, (uint8_t)VM_LIB_MATH_ADD );
+	// 		_b( 0x00, 0x00, 0x01 );
+	// 		_b( OP_SAVE, 0x00 );
+	// 	_b( OP_SAVE, 0x00 );
+	// _b( OP_CALL, 0x00 );
+	// _b( OP_LOAD, 0x00 );
+	// _b( OP_REG_INT, 0x01 ); _b( 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03 );
+	// _b( OP_ARGS_SET, 0x00, 0x01 );
+	// _b( OP_CALL, 0x00 );
+	// _b( OP_LOAD, 0x00 );
+	// _b( OP_LIB, (uint8_t)VM_LIB_IO, (uint8_t)VM_LIB_IO_DEBUG );
+	// _b( 0x00 );
+	// _b( OP_REG_BYTE, 0x00 ); _b( 0x00 );
+	
+	// _b( OP_NOOP );
+	// _b( OP_REG_BYTE, 0x00 ); _b( 0x00 );
+	// _b( OP_ARGS_SET, 0x00, 0x00 );
+	// _b( OP_REG_BYTE, 0x01 ); _b( 0x00 );
+	// _b( OP_ARGS_SET, 0x00, 0x01 );
+	// _b( OP_REG_BYTE, 0x02 ); _b( 0x00 );
+	// _b( OP_ARGS_SET, 0x00, 0x02 );
+	// _b( OP_REG_BYTE, 0x03 ); _b( 0x00 );
+	// _b( OP_ARGS_SET, 0x00, 0x03 );
+	// _b( OP_REG_BYTE, 0x04 ); _b( 0x00 );
+	// _b( OP_ARGS_SET, 0x00, 0x04 );
+	// _b( OP_SAVE, 0x00 );
+	
+	// _b( OP_HALT );
+
+
+
+	bc.size = size;
+
+	save( "test.gbc", bc );
+}
